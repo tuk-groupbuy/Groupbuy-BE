@@ -1,4 +1,4 @@
-package com.example.tugether_be.config;
+package com.example.tugether_be.global.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
