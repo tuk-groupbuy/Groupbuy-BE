@@ -10,5 +10,4 @@ public interface JoinPostRepositoryJPA extends JpaRepository<JoinPostDAO, Long> 
     Optional<JoinPostDAO> findByPost_PostIdAndUserId(Long postId, Long userId);
 
     void deleteByPost_PostIdAndUserId(Long postId, Long userId);
-
 }

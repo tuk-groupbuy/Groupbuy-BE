@@ -18,9 +18,10 @@ public class UpdatePostBean {
 
         post.setTitle(dto.getTitle());
         post.setContent(dto.getContent());
-        post.setPrice(dto.getPricePerOne());
+        post.setPrice(dto.getPrice());
         post.setMaxParticipants(dto.getGoalQuantity());
         post.setImageUrl(dto.getImageUrl());
+        post.setDeadline(dto.getDeadline());
 
         postRepository.save(post);
     }
