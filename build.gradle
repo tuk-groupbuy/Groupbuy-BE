@@ -40,6 +40,8 @@ dependencies {
 	implementation 'software.amazon.awssdk:ses:2.31.77' // AWS 이메일 서비스
 	implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8' // 메모리 캐싱 라이브러리
 
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3'
+
 	//	webSocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket' // 웹소켓
 	implementation 'com.fasterxml.jackson.core:jackson-databind'            // 메시지 JSON 직렬화
