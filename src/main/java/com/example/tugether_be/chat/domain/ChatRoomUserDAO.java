@@ -23,5 +23,6 @@ public class ChatRoomUserDAO {
     Long chatRoomId;
     Long userId;
 
+    LocalDateTime lastReadAt;
     LocalDateTime joinAt;
 }

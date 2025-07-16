@@ -4,16 +4,18 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Builder
-public class ChatMessageDTO {
-    String sender;
-    String content;
-
-    Long userId;
+public class ResponseChatRoomsGetDTO {
     Long chatRoomId;
+
+    String title;
+    String imageUrl;
+
+    String lastChatMessage;
+
+    Boolean isRead;
 
     LocalDateTime sendAt;
 }

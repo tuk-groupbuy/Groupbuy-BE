@@ -19,4 +19,6 @@ public interface PostRepositoryJPA extends JpaRepository<PostDAO, Long> {
 
     // 모집 완료 여부로 게시글 조회 (사용X)
     List<PostDAO> findByIsCompleted(Boolean isCompleted);
+
+    PostDAO findByPostId(Long postId);
 }

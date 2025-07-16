@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CreateChatRoomUsersDTOBean {
+public class CreateChatRoomUserDTOSBean {
 
     CreateChatRoomUserDTOBean createChatRoomUserDTOBean;
 
     @Autowired
-    public CreateChatRoomUsersDTOBean(CreateChatRoomUserDTOBean createChatRoomUserDTOBean) {
+    public CreateChatRoomUserDTOSBean(CreateChatRoomUserDTOBean createChatRoomUserDTOBean) {
         this.createChatRoomUserDTOBean = createChatRoomUserDTOBean;
     }
 

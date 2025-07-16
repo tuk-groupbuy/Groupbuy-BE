@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CreateChatMessagesDTOBean {
+public class CreateChatMessageDTOSBean {
 
     CreateChatMessageDTOBean createChatMessageDTOBean;
 
     @Autowired
-    public CreateChatMessagesDTOBean(CreateChatMessageDTOBean createChatMessageDTOBean) {
+    public CreateChatMessageDTOSBean(CreateChatMessageDTOBean createChatMessageDTOBean) {
         this.createChatMessageDTOBean = createChatMessageDTOBean;
     }
 

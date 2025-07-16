@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>채팅 테스트</title>
+  <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+</head>
+<body>
+<h2>WebSocket 채팅</h2>
+<input type="text" id="roomId" placeholder="채팅방 ID" />
+<input type="text" id="sender" placeholder="이름" />
+<button onclick="enterRoom()">입장</button>
+<br><br>
+<input type="text" id="message" placeholder="메시지" />
+<button onclick="sendMessage()">전송</button>
+<div id="chat-box" style="margin-top: 20px;"></div>
+
+<script>
+  let stompClient = null;
+  let connected = false;
+  let currentRoomId = "";
+
+  function enterRoom() {
+      const roomId = document.getElementById("roomId").value;
+      if (!roomId) {
+          alert("채팅방 ID를 입력하세요.");
+          return;
+      }
+
+      if (connected) {
+          alert("이미 입장했습니다.");
+          return;
+      }
+
+      const socket = new SockJS("http://localhost:8080/ws");
+      stompClient = Stomp.over(socket);
+
+      stompClient.connect({}, function () {
+          connected = true;
+          currentRoomId = roomId;
+
+          stompClient.subscribe(`/topic/chat/${roomId}`, function (msg) {
+              const data = JSON.parse(msg.body);
+              const chatBox = document.getElementById("chat-box");
+              chatBox.innerHTML += `<p><strong>${data.sender}</strong>: ${data.content}</p>`;
+          });
+
+          alert(`채팅방 ${roomId}에 입장했습니다.`);
+      });
+  }
+
+  function sendMessage() {
+      const sender = document.getElementById("sender").value;
+      const message = document.getElementById("message").value;
+
+      if (!connected) {
+          alert("먼저 채팅방에 입장하세요.");
+          return;
+      }
+
+      if (!sender || !message) {
+          alert("이름과 메시지를 입력하세요.");
+          return;
+      }
+
+      stompClient.send("/app/chat/send", {}, JSON.stringify({
+          sender: sender,
+          content: message,
+          chatRoomId: currentRoomId
+      }));
+
+      document.getElementById("message").value = "";
+  }
+</script>
+</body>
+</html>

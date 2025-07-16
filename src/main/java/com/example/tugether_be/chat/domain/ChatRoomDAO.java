@@ -17,6 +17,7 @@ public class ChatRoomDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long chatRoomId;
     Long ownerId;
+    Long postId;
 
     LocalDateTime createAt;
 }
