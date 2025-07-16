@@ -11,6 +11,6 @@ public class RequestPostUpdateDTO {
     private String title;
     private String content;
     private int goalQuantity;
-    private int pricePerOne;
+    private int price;
     private String imageUrl;
 }

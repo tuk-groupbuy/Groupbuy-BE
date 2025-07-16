@@ -40,7 +40,7 @@ public class GetPostBean {
                     .currentQuantity(post.getCurrentParticipants())
                     .goalQuantity(post.getMaxParticipants())
                     .isCompleted(post.getIsCompleted())
-                    .pricePerOne(post.getPrice())
+                    .price(post.getPrice())
                     .deadlineText(deadlineText)
                     .build();
         }).toList();
@@ -56,12 +56,12 @@ public class GetPostBean {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .goalQuantity(post.getMaxParticipants())
-                .pricePerOne(post.getPrice())
+                .price(post.getPrice())
                 .imageUrl(post.getImageUrl())
                 .currentQuantity(post.getCurrentParticipants())
                 .isCompleted(post.getIsCompleted())
                 .createdAt(post.getCreatedAt().toString())
-                .writerName("작성자 이름") // 실제 구현 시 사용자 이름 조회 로직 필요
+                .writerName("작성자 이름") // + 사용자 이름 조회 로직
                 .build();
     }
 }

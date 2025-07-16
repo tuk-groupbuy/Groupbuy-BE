@@ -10,5 +10,5 @@ public class RequestPostCreateDTO {
     private String title;
     private String content;
     private int goalQuantity;
-    private int pricePerOne;
+    private int price;
 }

@@ -11,7 +11,7 @@ public class ResponsePostDetailDTO {
     private String title; // 게시글 제목
     private String content; // 게시글 내용
     private int goalQuantity; // 목표 모집 인원
-    private int pricePerOne; // 1인당 가격
+    private int price; // 가격
     private String imageUrl; // 이미지 경로
     private int currentQuantity; // 현재 모집 인원
     private boolean isCompleted; // 거래 완료 여부
