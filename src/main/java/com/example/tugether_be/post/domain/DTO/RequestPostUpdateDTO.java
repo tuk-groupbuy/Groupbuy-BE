@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class RequestPostUpdateDTO {
@@ -13,4 +15,5 @@ public class RequestPostUpdateDTO {
     private int goalQuantity;
     private int price;
     private String imageUrl;
+    private LocalDateTime deadline;
 }

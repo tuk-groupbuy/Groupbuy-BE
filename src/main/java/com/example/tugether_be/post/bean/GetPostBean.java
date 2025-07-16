@@ -17,22 +17,19 @@ public class GetPostBean {
 
     private final PostRepositoryJPA postRepository;
 
-    // 게시글 전체 목록을 조회하여 ResponsePostSummaryDTO 리스트로 변환
-
+    // 게시글 전체 목록 조회
     public List<ResponsePostSummaryDTO> exec() {
         List<PostDAO> posts = postRepository.findAllByIsDeletedFalse();
 
         return posts.stream().map(post -> {
-            // 1. 마감일 계산: 생성일 기준 7일 후로 가정
-            LocalDate createdDate = post.getCreatedAt().toLocalDate();
-            LocalDate deadline = createdDate.plusDays(7);
-            LocalDate today = LocalDate.now();
+            String deadlineText;
+            if (post.getDeadline() != null) {
+                long daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), post.getDeadline().toLocalDate());
+                deadlineText = daysLeft >= 0 ? "마감 " + daysLeft + "일 전" : "마감 종료";
+            } else {
+                deadlineText = "마감일 미설정";
+            }
 
-            // 2. 남은 날짜 계산
-            long daysLeft = ChronoUnit.DAYS.between(today, deadline);
-            String deadlineText = daysLeft >= 0 ? "마감 " + daysLeft + "일 전" : "마감 종료";
-
-            // 3. DTO 생성
             return ResponsePostSummaryDTO.builder()
                     .postId(post.getPostId())
                     .title(post.getTitle())
@@ -46,10 +43,15 @@ public class GetPostBean {
         }).toList();
     }
 
-    // 게시글 단건 상세 조회
+
+    // 게시글 상세 조회
     public ResponsePostDetailDTO execDetail(Long postId) {
         PostDAO post = postRepository.findByPostIdAndIsDeletedFalse(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+
+        LocalDate today = LocalDate.now();
+        long daysLeft = ChronoUnit.DAYS.between(today, post.getDeadline().toLocalDate());
+        String deadlineText = daysLeft >= 0 ? "마감 " + daysLeft + "일 전" : "마감 종료";
 
         return ResponsePostDetailDTO.builder()
                 .postId(post.getPostId())
@@ -61,7 +63,8 @@ public class GetPostBean {
                 .currentQuantity(post.getCurrentParticipants())
                 .isCompleted(post.getIsCompleted())
                 .createdAt(post.getCreatedAt().toString())
-                .writerName("작성자 이름") // + 사용자 이름 조회 로직
+                .deadlineText(deadlineText)
+                .writerName("작성자 이름")
                 .build();
     }
 }

@@ -21,6 +21,7 @@ public class UpdatePostBean {
         post.setPrice(dto.getPrice());
         post.setMaxParticipants(dto.getGoalQuantity());
         post.setImageUrl(dto.getImageUrl());
+        post.setDeadline(dto.getDeadline());
 
         postRepository.save(post);
     }

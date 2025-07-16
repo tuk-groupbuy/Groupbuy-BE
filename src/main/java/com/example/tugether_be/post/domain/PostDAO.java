@@ -40,6 +40,8 @@ public class PostDAO {
 
     private Long writerId; // 작성자 ID
 
+    private LocalDateTime deadline; // 모집 마감일
+
     @CreationTimestamp
     private LocalDateTime createdAt; // 생성일시
 

@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class ResponsePostDetailDTO {
@@ -17,4 +19,5 @@ public class ResponsePostDetailDTO {
     private boolean isCompleted; // 거래 완료 여부
     private String createdAt; // 게시글 생성일
     private String writerName; // 작성자 이름
+    private String deadlineText; // 마감일까지 남은 기간
 }

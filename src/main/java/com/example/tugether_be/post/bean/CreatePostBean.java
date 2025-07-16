@@ -20,6 +20,7 @@ public class CreatePostBean {
                 .content(dto.getContent())
                 .maxParticipants(dto.getGoalQuantity())
                 .price(dto.getPrice())
+                .deadline(dto.getDeadline())
                 .imageUrl(imageUrl) // 저장된 파일 경로 사용
                 .currentParticipants(0)
                 .isCompleted(false)
