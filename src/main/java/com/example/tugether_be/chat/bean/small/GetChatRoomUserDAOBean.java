@@ -22,7 +22,11 @@ public class GetChatRoomUserDAOBean {
         return chatRoomUserRepositoryJPA.findByChatRoomIdAndUserId(chatRoomId, userId);
     }
 
-    public List<ChatRoomUserDAO> exec(Long chatRoomId){
+    public List<ChatRoomUserDAO> exec2(Long chatRoomId){
         return chatRoomUserRepositoryJPA.findAllByChatRoomId(chatRoomId);
+    }
+
+    public List<ChatRoomUserDAO> exec(Long userId){
+        return chatRoomUserRepositoryJPA.findByUserId(userId);
     }
 }

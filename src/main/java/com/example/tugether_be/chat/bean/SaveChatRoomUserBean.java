@@ -27,6 +27,6 @@ public class SaveChatRoomUserBean {
 
         saveChatRoomUserDAOBean.exec(chatRoomUserDAO);
 
-        return chatRoomUserDAO.getChatRoomId();
+        return chatRoomUserDAO.getChatRoomUserId();
     }
 }

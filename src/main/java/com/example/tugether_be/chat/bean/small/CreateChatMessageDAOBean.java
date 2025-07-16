@@ -10,7 +10,7 @@ public class CreateChatMessageDAOBean {
     public ChatMessageDAO exec(ChatMessageDTO chatMessageDTO){
         return ChatMessageDAO.builder()
                 .chatRoomId(chatMessageDTO.getChatRoomId())
-                .userId(null)
+                .userId(chatMessageDTO.getUserId())
                 .senderName(chatMessageDTO.getSender())
                 .content(chatMessageDTO.getContent())
                 .sendAt(chatMessageDTO.getSendAt())

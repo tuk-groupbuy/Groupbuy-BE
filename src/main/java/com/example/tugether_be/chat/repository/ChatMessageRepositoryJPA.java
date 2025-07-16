@@ -6,10 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface ChatMessageRepositoryJPA extends JpaRepository<ChatMessageDAO, Long> {
     List<ChatMessageDAO> findByChatRoomId(Long chatRoomId);
 
     Page<ChatMessageDAO> findByChatRoomIdOrderBySendAtDesc(Long roomId, PageRequest pageRequest);
+
+    ChatMessageDAO findTop1ByChatRoomIdOrderBySendAtDesc(Long chatRoomId);
 }

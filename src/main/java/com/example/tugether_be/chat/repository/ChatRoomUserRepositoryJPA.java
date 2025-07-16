@@ -16,4 +16,6 @@ public interface ChatRoomUserRepositoryJPA extends JpaRepository<ChatRoomUserDAO
     List<ChatRoomUserDAO> findAllByChatRoomId(Long chatRoomId);
 
     List<ChatRoomDAO> findChatRoomByUserId(Long userId);
+
+    List<ChatRoomUserDAO> findByUserId(Long userId);
 }
