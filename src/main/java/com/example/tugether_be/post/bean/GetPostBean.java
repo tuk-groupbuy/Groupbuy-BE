@@ -43,15 +43,25 @@ public class GetPostBean {
         }).toList();
     }
 
-
-    // 게시글 상세 조회
+    // requesterId 없이 호출될 때
     public ResponsePostDetailDTO execDetail(Long postId) {
+        return execDetail(postId, null); // 아래 메서드 재사용
+    }
+
+    // 게시글 상세 조회 (requesterId 포함)
+    public ResponsePostDetailDTO execDetail(Long postId, Long requesterId) {
         PostDAO post = postRepository.findByPostIdAndIsDeletedFalse(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
         LocalDate today = LocalDate.now();
         long daysLeft = ChronoUnit.DAYS.between(today, post.getDeadline().toLocalDate());
         String deadlineText = daysLeft >= 0 ? "마감 " + daysLeft + "일 전" : "마감 종료";
+
+        // 요청자와 작성자 비교
+        boolean isWriter = requesterId != null && post.getWriterId().equals(requesterId);
+
+        // 참여 상태 결정
+        String participationStatus = "None";
 
         return ResponsePostDetailDTO.builder()
                 .postId(post.getPostId())
@@ -65,6 +75,8 @@ public class GetPostBean {
                 .createdAt(post.getCreatedAt().toString())
                 .deadlineText(deadlineText)
                 .writerName("작성자 이름")
+                .isWriter(isWriter)
+                .participationStatus(participationStatus)
                 .build();
     }
 }

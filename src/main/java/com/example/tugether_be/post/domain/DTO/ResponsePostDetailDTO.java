@@ -1,5 +1,6 @@
 package com.example.tugether_be.post.domain.DTO;
 
+import com.example.tugether_be.post.domain.type.ParticipationStatus;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -19,5 +20,8 @@ public class ResponsePostDetailDTO {
     private boolean isCompleted; // 거래 완료 여부
     private String createdAt; // 게시글 생성일
     private String writerName; // 작성자 이름
+    private Long writerId; // 작성자 ID
     private String deadlineText; // 마감일까지 남은 기간
+    private Boolean isWriter;
+    private String participationStatus; // 참여자 상태 (신청 전, 승인 전, 승인 후)
 }

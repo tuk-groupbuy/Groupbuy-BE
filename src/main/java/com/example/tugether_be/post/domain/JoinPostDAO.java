@@ -27,7 +27,6 @@ public class JoinPostDAO {
 
     private Boolean approved; // 참여 요청 승인 여부
 
-
     @CreationTimestamp
     private LocalDateTime joinedAt; // 참여 시간 (자동 생성)
 }

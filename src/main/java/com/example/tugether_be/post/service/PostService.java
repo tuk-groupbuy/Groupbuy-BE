@@ -27,9 +27,13 @@ public class PostService {
         return getPostBean.exec();
     }
 
-    // 게시글 상세 조회
-    public ResponsePostDetailDTO getPostDetail(Long postId) {
-        return getPostBean.execDetail(postId);
+    // 게시글 상세 조회 (requesterId optional)
+    public ResponsePostDetailDTO getPostDetail(Long postId, Long requesterId) {
+        if (requesterId == null) {
+            return getPostBean.execDetail(postId);
+        } else {
+            return getPostBean.execDetail(postId, requesterId);
+        }
     }
 
     // 게시글 작성
