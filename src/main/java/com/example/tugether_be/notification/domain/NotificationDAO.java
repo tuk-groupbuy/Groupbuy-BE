@@ -28,6 +28,9 @@ public class NotificationDAO {
     private Long receiverId; // 알림 수신자 ID
 
     @Column(nullable = false)
+    private Long senderId; // 참여 요청한 사용자 ID
+
+    @Column(nullable = false)
     private String type; // 알림 타입 (JOIN_REQUEST, APPROVED, REJECTED)
 
     @Column(nullable = false, columnDefinition = "TEXT")

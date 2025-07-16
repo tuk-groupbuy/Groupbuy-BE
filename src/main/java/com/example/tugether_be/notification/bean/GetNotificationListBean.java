@@ -24,6 +24,7 @@ public class GetNotificationListBean {
                         .content(notification.getContent())
                         .isRead(notification.getIsRead())
                         .createdAt(notification.getCreatedAt().toString())
+                        .userId(notification.getSenderId())
                         .build())
                 .collect(Collectors.toList());
     }
