@@ -28,8 +28,8 @@ jobs:
       - name: Gradlew 실행 권한 부여
         run: chmod +x gradlew
 
-      - name: Gradle 빌드 (application-sec.yaml 포함)
-        run: ./gradlew clean build -x test
+      - name: Gradle 빌드
+        run: ./gradlew clean bootJar -x test
 
       - name: SSH 키 설정
         run: |
@@ -39,7 +39,7 @@ jobs:
 
       - name: 빌드 파일 및 application-sec.yaml EC2 전송
         run: |
-          scp -o StrictHostKeyChecking=no build/libs/*.jar ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/app.jar
+          scp -o StrictHostKeyChecking=no tugether-be-0.0.1-SNAPSHOT.jar ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/app.jar
           scp -o StrictHostKeyChecking=no application-sec.yaml ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/application-sec.yaml
 
       - name: EC2에서 실행 (기존 프로세스 종료 및 재시작)
