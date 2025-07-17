@@ -33,6 +33,7 @@ public class GetNotificationListBean {
                     .orElse("알 수 없음");
 
             return ResponseNotificationDTO.builder()
+                    .postId(post != null ? post.getPostId() : null)
                     .notificationId(notification.getNotificationId())
                     .content(notification.getContent())
                     .type(notification.getType())

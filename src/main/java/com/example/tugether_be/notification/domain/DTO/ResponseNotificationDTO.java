@@ -7,6 +7,7 @@ import lombok.Getter;
 @Builder
 public class ResponseNotificationDTO {
 
+    private Long postId;
     private Long notificationId; // 알림 ID
     private String type;         // 알림 타입 (JOIN_REQUEST, APPROVED, REJECTED)
     private String content;      // 알림 내용
