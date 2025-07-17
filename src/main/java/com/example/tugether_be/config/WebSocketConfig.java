@@ -13,8 +13,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("*") // 모든 도메인에서 접근 허용
-                .withSockJS(); // SockJS fallback
+                .setAllowedOriginPatterns("*"); // 모든 도메인에서 접근 허용
+//                .withSockJS(); // SockJS fallback
     }
 
     @Override
