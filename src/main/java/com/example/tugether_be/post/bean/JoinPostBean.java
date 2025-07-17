@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+import static com.example.tugether_be.post.domain.type.ParticipationStatus.REQUESTED;
+
 @Component
 @RequiredArgsConstructor
 public class JoinPostBean {
@@ -53,6 +55,8 @@ public class JoinPostBean {
         if (updated >= post.getMaxParticipants()) {
             post.setIsCompleted(true);
         }
+
+        post.setParticipationStatus(REQUESTED);
 
         // 7. 게시글 갱신
         postRepository.save(post);

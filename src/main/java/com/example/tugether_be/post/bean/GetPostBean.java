@@ -61,7 +61,7 @@ public class GetPostBean {
         boolean isWriter = requesterId != null && post.getWriterId().equals(requesterId);
 
         // 참여 상태 결정
-        String participationStatus = "None";
+//        String participationStatus = "None";
 
         return ResponsePostDetailDTO.builder()
                 .postId(post.getPostId())
@@ -77,7 +77,7 @@ public class GetPostBean {
                 .deadline(post.getDeadline())
                 .writerName("작성자 이름")
                 .isWriter(isWriter)
-                .participationStatus(participationStatus)
+                .participationStatus(String.valueOf(post.getParticipationStatus()))
                 .build();
     }
 }
