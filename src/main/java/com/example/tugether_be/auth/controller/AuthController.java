@@ -3,7 +3,7 @@ package com.example.tugether_be.auth.controller;
 import com.example.tugether_be.auth.dto.EmailDto;
 import com.example.tugether_be.auth.dto.LoginRequest;
 import com.example.tugether_be.auth.dto.SignupRequest;
-import com.example.tugether_be.auth.dto.UserIdResponse;
+import com.example.tugether_be.auth.dto.LoginResponse;
 import com.example.tugether_be.auth.entity.User;
 import com.example.tugether_be.auth.repository.UserRepository;
 import com.example.tugether_be.auth.service.AuthService;
@@ -38,8 +38,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public Long login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail()).get();
-        return user.getId();
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setUserId(user.getId());
+        loginResponse.setNickname(user.getNickname());
+        return ResponseEntity.ok(loginResponse);
     }
 }
