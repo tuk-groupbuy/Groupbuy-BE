@@ -15,4 +15,5 @@ public class ResponseNotificationDTO {
     private Long userId; // 참여 요청한 사용자 ID
     private Integer currentQuantity; // 현재 인원
     private Integer goalQuantity; // 최대 인원
+    private String senderNickname;
 }
