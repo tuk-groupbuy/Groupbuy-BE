@@ -3,11 +3,13 @@ package com.example.tugether_be.auth.controller;
 import com.example.tugether_be.auth.dto.EmailDto;
 import com.example.tugether_be.auth.dto.LoginRequest;
 import com.example.tugether_be.auth.dto.SignupRequest;
-import com.example.tugether_be.auth.dto.UserIdResponse;
+import com.example.tugether_be.auth.dto.LoginResponse;
 import com.example.tugether_be.auth.entity.User;
 import com.example.tugether_be.auth.repository.UserRepository;
 import com.example.tugether_be.auth.service.AuthService;
 import com.example.tugether_be.auth.service.EmailVerificationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +39,13 @@ public class AuthController {
         return ResponseEntity.ok("회원가입 성공");
     }
 
+    @Tag(name = "efew", description = "efwwef")
     @PostMapping("/login")
-    public Long login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail()).get();
-        return user.getId();
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setUserId(user.getId());
+        loginResponse.setNickname(user.getNickname());
+        return ResponseEntity.ok(loginResponse);
     }
 }

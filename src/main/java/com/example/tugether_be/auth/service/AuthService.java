@@ -33,6 +33,7 @@ public class AuthService {
         User user = User.builder()
                 .email(request.getEmail())
                 .password(encodedPassword)
+                .nickname(request.getNickname())
                 .build();
 
         userRepository.save(user);

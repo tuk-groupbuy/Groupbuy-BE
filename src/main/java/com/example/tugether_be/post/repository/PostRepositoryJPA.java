@@ -2,6 +2,8 @@ package com.example.tugether_be.post.repository;
 
 import com.example.tugether_be.post.domain.PostDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +22,8 @@ public interface PostRepositoryJPA extends JpaRepository<PostDAO, Long> {
     // 모집 완료 여부로 게시글 조회 (사용X)
     List<PostDAO> findByIsCompleted(Boolean isCompleted);
 
+    @Query("SELECT p FROM PostDAO p WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<PostDAO> searchByTitleLike(@Param("keyword") String keyword);
+  
     PostDAO findByPostId(Long postId);
 }
