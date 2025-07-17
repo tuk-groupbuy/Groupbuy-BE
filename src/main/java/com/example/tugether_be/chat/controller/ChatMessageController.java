@@ -1,6 +1,7 @@
 package com.example.tugether_be.chat.controller;
 
 import com.example.tugether_be.chat.domain.DTO.ResponseChatMessageGetDTO;
+import com.example.tugether_be.chat.domain.DTO.ResponseChatMessagePageGetDTO;
 import com.example.tugether_be.chat.service.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,16 +29,16 @@ public class ChatMessageController {
     public ResponseEntity<Map<String, Object>> getChatMessages(@PathVariable("chatRoomId") Long chatRoomId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
 
         // 채팅 내역 가져오기
-        List<ResponseChatMessageGetDTO> responseChatMessageGetDTOS = chatMessageService.getChatMessages(chatRoomId, page, size);
+        ResponseChatMessagePageGetDTO responseChatMessagePageGetDTO = chatMessageService.getChatMessages(chatRoomId, page, size);
 
         // 해당 DTO 존재 유무 확인
-        boolean success = (responseChatMessageGetDTOS == null) ? false : true;
+        boolean success = (responseChatMessagePageGetDTO == null) ? false : true;
 
         // Map 형태로 묶어 저장
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "대화 10개 조회 성공" : "대화 10개 조회 실패");
-        requestMap.put("responseChatMessageGetDTOS", responseChatMessageGetDTOS);
+        requestMap.put("responseChatMessagePageGetDTO", responseChatMessagePageGetDTO);
 
         // 반환
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
