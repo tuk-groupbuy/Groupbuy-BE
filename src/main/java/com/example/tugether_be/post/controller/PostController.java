@@ -6,6 +6,7 @@ import com.example.tugether_be.post.domain.DTO.ResponsePostDetailDTO;
 import com.example.tugether_be.post.domain.DTO.ResponsePostSummaryDTO;
 import com.example.tugether_be.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,6 +46,7 @@ public class PostController {
         Long postId = postService.createPost(dto, file);
         return ResponseEntity.ok("게시글 작성에 성공했습니다. (ID: " + postId + ")");
     }
+
 
     // 게시글 수정
     @PutMapping("/{postId}")
