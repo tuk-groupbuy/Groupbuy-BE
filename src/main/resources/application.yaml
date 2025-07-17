@@ -1,6 +1,18 @@
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: ${ACCESS_KEY}
+      secret-key: ${SECRET_KEY}
 spring:
   application:
     name: tugether-be
+  jpa:
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
 
   servlet:
     multipart:
@@ -9,10 +21,13 @@ spring:
 
   profiles:
     active: sec
-
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace

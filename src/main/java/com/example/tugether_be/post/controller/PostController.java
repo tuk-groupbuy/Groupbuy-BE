@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/post")
@@ -57,5 +58,11 @@ public class PostController {
     public ResponseEntity<String> deletePost(@PathVariable Long postId) {
         postService.deletePost(postId);
         return ResponseEntity.ok("삭제가 완료되었습니다.");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Map<String, Object>> searchPosts(@RequestParam String keyword) {
+        List<ResponsePostSummaryDTO> posts = postService.searchPosts(keyword);
+        return ResponseEntity.ok(Map.of("posts", posts));
     }
 }
