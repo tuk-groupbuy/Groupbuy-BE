@@ -35,7 +35,7 @@ public class GetNotificationListBean {
                     .map(User::getNickname)
                     .orElse("알 수 없음");
 
-            ChatRoomDAO chatRoomDAO = chatRoomRepositoryJPA.findByOwnerId(userId);
+            ChatRoomDAO chatRoomDAO = chatRoomRepositoryJPA.findByOwnerIdAndPostId(userId, post != null ? post.getPostId() : null);
 
             return ResponseNotificationDTO.builder()
                     .postId(post != null ? post.getPostId() : null)

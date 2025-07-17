@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface ChatRoomRepositoryJPA extends JpaRepository<ChatRoomDAO, Long> {
 
-    ChatRoomDAO findByOwnerId(Long ownerId);
+    ChatRoomDAO findByOwnerIdAndPostId(Long ownerId, Long postId);
 }
