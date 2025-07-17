@@ -4,6 +4,7 @@ import com.example.tugether_be.auth.dto.EmailDto;
 import com.example.tugether_be.auth.dto.SignupRequest;
 import com.example.tugether_be.auth.service.AuthService;
 import com.example.tugether_be.auth.service.EmailVerificationService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +27,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody SignupRequest request) {
-        authService.signup(request);
+    public ResponseEntity<String> signup(@RequestBody SignupRequest request, HttpServletRequest httpRequest) {
+        authService.signup(request, httpRequest);
         return ResponseEntity.ok("회원가입 성공");
     }
 }
