@@ -33,7 +33,7 @@ public class FileStorageService {
 
             Path filePath = uploadPath.resolve(uniqueFileName);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            return filePath.toString();
+            return "http://13.125.230.122:8080/uploads/" + uniqueFileName;
         } catch (IOException e) {
             throw new RuntimeException("파일 저장 실패: " + e.getMessage());
         }
