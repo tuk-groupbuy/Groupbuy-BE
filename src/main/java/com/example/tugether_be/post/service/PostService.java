@@ -1,9 +1,6 @@
 package com.example.tugether_be.post.service;
 
-import com.example.tugether_be.post.bean.CreatePostBean;
-import com.example.tugether_be.post.bean.DeletePostBean;
-import com.example.tugether_be.post.bean.GetPostBean;
-import com.example.tugether_be.post.bean.UpdatePostBean;
+import com.example.tugether_be.post.bean.*;
 import com.example.tugether_be.post.domain.DTO.*;
 import com.example.tugether_be.post.service.file.FileStorageService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +14,7 @@ import java.util.List;
 public class PostService {
 
     private final GetPostBean getPostBean;
+    private final SearchPostBean searchPostBean;
     private final CreatePostBean createPostBean;
     private final UpdatePostBean updatePostBean;
     private final DeletePostBean deletePostBean;
@@ -46,5 +44,10 @@ public class PostService {
     // 게시글 삭제
     public void deletePost(Long postId) {
         deletePostBean.exec(postId);
+    }
+
+    // 게시글 검색
+    public List<ResponsePostSummaryDTO> searchPosts(String keyword) {
+        return searchPostBean.exec(keyword);
     }
 }
