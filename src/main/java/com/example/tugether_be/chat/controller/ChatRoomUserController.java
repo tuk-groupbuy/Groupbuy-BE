@@ -27,7 +27,7 @@ public class ChatRoomUserController {
 
     // 채팅방 참여 인원 조회 api
     @GetMapping("/all/{chatRoomId}")
-    public ResponseEntity<Map<String, Object>> getChatRoomUsers(@PathVariable Long chatRoomId){
+    public ResponseEntity<Map<String, Object>> getChatRoomUsers(@PathVariable("chatRoomId") Long chatRoomId){
 
         // 채팅방 참여 유저 DTO
         List<ResponseChatRoomUserGetDTO> responseChatRoomUserGetDTOS = chatRoomUserService.getChatRoomUsers(chatRoomId);
@@ -39,7 +39,7 @@ public class ChatRoomUserController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? " 채팅방 참여 인원 조회 성공" : "채팅방 참여 인원 조회 실패");
-        requestMap.put("commentId", responseChatRoomUserGetDTOS);
+        requestMap.put("responseChatRoomUserGetDTOS", responseChatRoomUserGetDTOS);
 
         // 반환
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -50,14 +50,14 @@ public class ChatRoomUserController {
     @PostMapping("/join")
     public ResponseEntity<Map<String, Object>> joinChatRoom(@RequestBody RequestChatRoomUserSaveDTO requestCommentSaveDTO){
 
-        Long chatRoomId = chatRoomUserService.joinChatRoom(requestCommentSaveDTO);
+        Long chatRoomUserId = chatRoomUserService.joinChatRoom(requestCommentSaveDTO);
 
-        boolean success = (chatRoomId == null) ? false : true;
+        boolean success = (chatRoomUserId == null) ? false : true;
 
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "채팅방 참여 성공" : "채팅방 참여 실패");
-        requestMap.put("commentId", chatRoomId);
+        requestMap.put("chatRoomUserId", chatRoomUserId);
 
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
@@ -76,7 +76,7 @@ public class ChatRoomUserController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "대화 나가기 성공" : "대화 나가기 실패");
-        requestMap.put("commentId", chatRoomUserId);
+        requestMap.put("chatRoomUserId", chatRoomUserId);
 
         // 반환
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

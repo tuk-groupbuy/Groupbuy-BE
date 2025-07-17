@@ -2,6 +2,7 @@ package com.example.tugether_be.chat.service;
 
 import com.example.tugether_be.chat.bean.GetChatMessagesBean;
 import com.example.tugether_be.chat.domain.DTO.ResponseChatMessageGetDTO;
+import com.example.tugether_be.chat.domain.DTO.ResponseChatMessagePageGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ChatMessageService {
     }
 
     // 채팅 내역 가져오기
-    public List<ResponseChatMessageGetDTO> getChatMessages(Long roomId, int page, int size){
+    public ResponseChatMessagePageGetDTO getChatMessages(Long roomId, int page, int size){
         return getChatMessagesBean.exec(roomId, page, size);
     }
 }

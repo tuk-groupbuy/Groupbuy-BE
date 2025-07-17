@@ -23,6 +23,7 @@ public class CreateChatRoomDAOBean {
     public ChatRoomDAO exec(RequestChatRoomSaveDTO requestChatRoomSaveDTO, LocalDateTime now){
         return ChatRoomDAO.builder()
                 .ownerId(requestChatRoomSaveDTO.getUserId())
+                .postId(requestChatRoomSaveDTO.getPostId())
                 .createAt(now)
                 .build();
     }

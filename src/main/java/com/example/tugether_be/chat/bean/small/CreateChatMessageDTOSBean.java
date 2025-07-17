@@ -2,6 +2,7 @@ package com.example.tugether_be.chat.bean.small;
 
 import com.example.tugether_be.chat.domain.ChatMessageDAO;
 import com.example.tugether_be.chat.domain.DTO.ResponseChatMessageGetDTO;
+import com.example.tugether_be.chat.domain.DTO.ResponseChatMessagePageGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -10,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CreateChatMessagesDTOBean {
+public class CreateChatMessageDTOSBean {
 
     CreateChatMessageDTOBean createChatMessageDTOBean;
 
     @Autowired
-    public CreateChatMessagesDTOBean(CreateChatMessageDTOBean createChatMessageDTOBean) {
+    public CreateChatMessageDTOSBean(CreateChatMessageDTOBean createChatMessageDTOBean) {
         this.createChatMessageDTOBean = createChatMessageDTOBean;
     }
 
-    public List<ResponseChatMessageGetDTO> exec(Page<ChatMessageDAO> chatMessageDAOS) {
+    public ResponseChatMessagePageGetDTO exec(Page<ChatMessageDAO> chatMessageDAOS) {
         // DTO list 객체 생성
         List<ResponseChatMessageGetDTO> responseChatMessageGetDTOS = new ArrayList<>();
 
@@ -34,6 +35,6 @@ public class CreateChatMessagesDTOBean {
         }
 
         // DTO 리스트 반환
-        return responseChatMessageGetDTOS;
+        return new ResponseChatMessagePageGetDTO(responseChatMessageGetDTOS, chatMessageDAOS.isLast());
     }
 }

@@ -12,6 +12,7 @@ public class ChatMessageDTO {
     String sender;
     String content;
 
+    Long userId;
     Long chatRoomId;
 
     LocalDateTime sendAt;

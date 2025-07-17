@@ -12,11 +12,12 @@ public class CreateNotificationBean {
 
     private final NotificationRepositoryJPA notificationRepository;
 
-    public void createJoinRequestNotification(PostDAO post, Long requesterId) {
+    public void createJoinRequestNotification(PostDAO post, Long senderId) {
         // 알림 엔티티 생성
         NotificationDAO notification = NotificationDAO.builder()
                 .post(post)
                 .receiverId(post.getWriterId()) // 게시글 작성자가 수신자
+                .senderId(senderId) // 참여 사용자 ID
                 .type("JOIN_REQUEST")           // 참여 요청 타입
                 .content("게시글 '" + post.getTitle() + "'에 참여 요청이 도착했습니다.") // 알림 내용
                 .isRead(false)

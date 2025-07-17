@@ -8,4 +8,5 @@ import lombok.Data;
 public class ResponseChatRoomUserGetDTO {
     Long userId;
     boolean isOwner;
+    String nickname;
 }
