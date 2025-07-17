@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<ProfileResponse> getProfile(@RequestBody UserIdRequest userIdRequest) {
-        ProfileResponse response = userService.getProfile(userIdRequest.getUserId());
+    public ResponseEntity<ProfileResponse> getProfile(@RequestParam Long userId) {
+        ProfileResponse response = userService.getProfile(userId);
         return ResponseEntity.ok(response);
     }
 }
