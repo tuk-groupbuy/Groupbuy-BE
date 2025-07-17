@@ -29,9 +29,9 @@ public class GetChatRoomsBean {
         this.createChatRoomDTOSBean = createChatRoomDTOSBean;
     }
 
-    public List<ResponseChatRoomsGetDTO> exec(RequestChatRoomsGetDTO requestChatRoomsGetDTO) {
+    public List<ResponseChatRoomsGetDTO> exec(Long userId) {
 
-        List<ChatRoomUserDAO> chatRoomUserDAOS = getChatRoomUserDAOBean.exec(requestChatRoomsGetDTO.getUserId());
+        List<ChatRoomUserDAO> chatRoomUserDAOS = getChatRoomUserDAOBean.exec(userId);
         log.info("info log chatRoomUserDAOS={}", chatRoomUserDAOS);
 
         return createChatRoomDTOSBean.exec(chatRoomUserDAOS);

@@ -12,6 +12,7 @@ public class CreateChatRoomUserDTOBean {
         return ResponseChatRoomUserGetDTO.builder()
                 .userId(chatRoomUserDAO.getUserId())
                 .isOwner(chatRoomUserDAO.getUserId().equals(chatRoomDAO.getOwnerId()))
+                .nickname(chatRoomUserDAO.getNickname())
                 .build();
     }
 }
