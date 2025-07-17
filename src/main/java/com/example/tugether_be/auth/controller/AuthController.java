@@ -8,6 +8,8 @@ import com.example.tugether_be.auth.entity.User;
 import com.example.tugether_be.auth.repository.UserRepository;
 import com.example.tugether_be.auth.service.AuthService;
 import com.example.tugether_be.auth.service.EmailVerificationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class AuthController {
         return ResponseEntity.ok("회원가입 성공");
     }
 
+    @Tag(name = "efew", description = "efwwef")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail()).get();

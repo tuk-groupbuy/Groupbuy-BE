@@ -12,5 +12,7 @@ public class SignupRequest {
     private String password;
 
     private String code;
+
+    private String nickname;
 }
 
