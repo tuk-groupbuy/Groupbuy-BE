@@ -13,6 +13,7 @@ public class RequestPostUpdateDTO {
     private String title;
     private String content;
     private int goalQuantity;
+    private Integer minParticipants;
     private int price;
     private String imageUrl;
     private LocalDateTime deadline;

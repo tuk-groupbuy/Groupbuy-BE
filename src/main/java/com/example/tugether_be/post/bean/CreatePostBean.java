@@ -19,6 +19,7 @@ public class CreatePostBean {
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .maxParticipants(dto.getGoalQuantity())
+                .minParticipants(dto.getMinParticipants())
                 .price(dto.getPrice())
                 .deadline(dto.getDeadline())
                 .imageUrl(imageUrl) // 저장된 파일 경로 사용

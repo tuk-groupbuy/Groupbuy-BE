@@ -11,6 +11,7 @@ public class RequestPostCreateDTO {
     private String title;
     private String content;
     private int goalQuantity;
+    private Integer minParticipants;
     private int price;
     private LocalDateTime deadline;
 }
