@@ -17,4 +17,6 @@ public class ResponseNotificationDTO {
     private Integer currentQuantity; // 현재 인원
     private Integer goalQuantity; // 최대 인원
     private String senderNickname;
+    Long writerId;
+    Long chatRoomId;
 }

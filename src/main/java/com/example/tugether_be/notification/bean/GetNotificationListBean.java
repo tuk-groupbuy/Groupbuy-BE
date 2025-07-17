@@ -2,6 +2,8 @@ package com.example.tugether_be.notification.bean;
 
 import com.example.tugether_be.auth.entity.User;
 import com.example.tugether_be.auth.repository.UserRepository;
+import com.example.tugether_be.chat.domain.ChatRoomDAO;
+import com.example.tugether_be.chat.repository.ChatRoomRepositoryJPA;
 import com.example.tugether_be.notification.domain.DTO.ResponseNotificationDTO;
 import com.example.tugether_be.notification.domain.NotificationDAO;
 import com.example.tugether_be.notification.repository.NotificationRepositoryJPA;
@@ -20,6 +22,7 @@ public class GetNotificationListBean {
 
     private final NotificationRepositoryJPA notificationRepository;
     private final UserRepository userRepository;
+    private final ChatRoomRepositoryJPA chatRoomRepositoryJPA;
 
     public List<ResponseNotificationDTO> exec(Long userId) {
         List<NotificationDAO> notifications = notificationRepository.findByReceiverIdOrderByCreatedAtDesc(userId);
@@ -32,6 +35,8 @@ public class GetNotificationListBean {
                     .map(User::getNickname)
                     .orElse("알 수 없음");
 
+            ChatRoomDAO chatRoomDAO = chatRoomRepositoryJPA.findByOwnerId(userId);
+
             return ResponseNotificationDTO.builder()
                     .postId(post != null ? post.getPostId() : null)
                     .notificationId(notification.getNotificationId())
@@ -43,6 +48,8 @@ public class GetNotificationListBean {
                     .currentQuantity(post != null ? post.getCurrentParticipants() : null)
                     .goalQuantity(post != null ? post.getMaxParticipants() : null)
                     .senderNickname(senderNickname)
+                    .writerId(userId)
+                    .chatRoomId(chatRoomDAO.getChatRoomId())
                     .build();
         }).toList();
     }
