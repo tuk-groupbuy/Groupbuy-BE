@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NicknameDto {
 
+    private Long userId;
     private String nickname;
 }
 

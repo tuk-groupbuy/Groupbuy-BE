@@ -14,7 +14,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void updateNickname(NicknameDto nicknameDto) {
-        User user = userRepository.findById(SecurityUtil.getCurrentUserId()).get();
+        User user = userRepository.findById(nicknameDto.getUserId()).get();
         user.updateNickname(nicknameDto.getNickname());
         userRepository.save(user);
     }

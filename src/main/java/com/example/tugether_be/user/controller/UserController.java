@@ -20,7 +20,6 @@ public class UserController {
 
     @PatchMapping("/nickname")
     public ResponseEntity<String> updateNickname(@RequestBody NicknameDto nicknameDto) {
-        System.out.println("닉네임 컨트롤러 동작 확인");
         userService.updateNickname(nicknameDto);
         return ResponseEntity.ok("닉네임 수정 완료");
     }
