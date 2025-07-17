@@ -32,6 +32,8 @@ public class PostDAO {
 
     private Integer currentParticipants; // 현재 모집 인원
 
+    private Integer minParticipants; // 최소 모집 인원
+
     private Boolean isCompleted; // 모집 마감 여부
 
     private Boolean isDeleted; // 삭제 여부
