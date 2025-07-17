@@ -5,6 +5,7 @@ import com.example.tugether_be.chat.bean.small.CreateChatPageRequestBean;
 import com.example.tugether_be.chat.bean.small.GetChatMessageDAOSBean;
 import com.example.tugether_be.chat.domain.ChatMessageDAO;
 import com.example.tugether_be.chat.domain.DTO.ResponseChatMessageGetDTO;
+import com.example.tugether_be.chat.domain.DTO.ResponseChatMessagePageGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +28,7 @@ public class GetChatMessagesBean {
     }
 
     // 채팅 내역 가져오기
-    public List<ResponseChatMessageGetDTO> exec(Long roomId, int page, int size){
+    public ResponseChatMessagePageGetDTO exec(Long roomId, int page, int size){
         // pageRequest 객체 생성
         PageRequest pageRequest = createChatPageRequestBean.exec(page, size);
 

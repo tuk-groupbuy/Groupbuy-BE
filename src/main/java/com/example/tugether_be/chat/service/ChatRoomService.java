@@ -29,7 +29,7 @@ public class ChatRoomService {
     }
 
     // 채팅방 목록 조회
-    public List<ResponseChatRoomsGetDTO> getChatRooms(RequestChatRoomsGetDTO requestChatRoomsGetDTO){
-        return getChatRoomsBean.exec(requestChatRoomsGetDTO);
+    public List<ResponseChatRoomsGetDTO> getChatRooms(Long userId){
+        return getChatRoomsBean.exec(userId);
     }
 }

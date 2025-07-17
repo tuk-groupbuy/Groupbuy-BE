@@ -30,11 +30,9 @@ public class GetChatRoomUsersBean {
     public List<ResponseChatRoomUserGetDTO> exec(Long chatRoomId){
         ChatRoomDAO chatRoomDAO = getChatRoomDAOBean.exec(chatRoomId);
         if (chatRoomDAO == null) return null;
-        log.info("info log chatRoomDAO={}", chatRoomDAO);
 
         List<ChatRoomUserDAO> chatRoomUserDAOS = getChatRoomUserDAOBean.exec2(chatRoomId);
         if (chatRoomUserDAOS.isEmpty()) return null;
-        log.info("info log chatRoomUserDAOS={}", chatRoomUserDAOS);
 
         return createChatRoomUserDTOSBean.exec(chatRoomUserDAOS, chatRoomDAO);
     }
