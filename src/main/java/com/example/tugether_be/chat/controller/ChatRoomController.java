@@ -46,11 +46,11 @@ public class ChatRoomController {
 
 
     // 채팅방 목록 조회
-    @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> getAllChatRoom(@RequestBody RequestChatRoomsGetDTO requestChatRoomsGetDTO){
+    @GetMapping("/all/{userId}")
+    public ResponseEntity<Map<String, Object>> getAllChatRoom(@PathVariable("userId") Long userId){
 
         // 채팅방 목록 DTO
-        List<ResponseChatRoomsGetDTO> requestChatRoomSaveDTOS = chatRoomService.getChatRooms(requestChatRoomsGetDTO);
+        List<ResponseChatRoomsGetDTO> requestChatRoomSaveDTOS = chatRoomService.getChatRooms(userId);
 
         // 해당 채팅방 목록 조회 성공 여부
         boolean success = (requestChatRoomSaveDTOS == null) ? false : true;
